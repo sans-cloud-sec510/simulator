@@ -33,7 +33,7 @@ variable "ami_owner" {
 variable "course_number" {
   type        = string
   description = "SANS course name"
-  default     = "sec540"
+  default     = "sec510"
 }
 
 variable "course_version" {
@@ -188,7 +188,7 @@ resource "aws_security_group" "vm" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description = "SSH from admin ip"
+    description = "SSH from current IP"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -196,11 +196,19 @@ resource "aws_security_group" "vm" {
   }
 
   ingress {
-    description = "54000 from admin ip"
+    description = "Use for C2 connections in the labs"
+    from_port   = 4444
+    to_port     = 4444
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "54000 from anywhere"
     from_port   = 54000
     to_port     = 54000
     protocol    = "tcp"
-    cidr_blocks = [local.allowed_cidr]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
