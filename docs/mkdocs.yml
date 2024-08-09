@@ -24,6 +24,7 @@ theme:
 nav:
   - Home: "index.md"
   - Versions:
+      - J02: "j02.md"
       - J01: "j01.md"
 
 markdown_extensions:
