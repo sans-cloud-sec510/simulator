@@ -39,7 +39,7 @@ variable "course_number" {
 variable "course_version" {
   type        = string
   description = "SANS course version"
-  default     = "j01"
+  default     = "j02"
 }
 
 terraform {
